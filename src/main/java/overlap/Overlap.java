@@ -18,7 +18,6 @@ public class Overlap {
             set.addAll(list);
         }
 
-
         double start = 0.0;
 
         for (Event element : set) {

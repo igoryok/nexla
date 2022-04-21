@@ -22,6 +22,7 @@ public class OverlapTest {
         List<Event> result = o.freeSlots(null);
 
         assertEquals(0, result.size());
+        System.out.println(result);
     }
 
     /**
@@ -36,6 +37,7 @@ public class OverlapTest {
 
         assertEquals(1, result.size());
         assertEquals(new Event(0.00, 24.00), result.get(0));
+        System.out.println(result);
     }
 
     /**
@@ -64,6 +66,8 @@ public class OverlapTest {
         assertEquals(new Event(10.30, 11.00), result.get(1));
         assertEquals(new Event(11.30, 13.00), result.get(2));
         assertEquals(new Event(14.00, 24.00), result.get(3));
+
+        System.out.println(result);
     }
 
     /**
@@ -84,5 +88,6 @@ public class OverlapTest {
         List<Event> result = o.freeSlots(input);
 
         assertEquals(0, result.size());
+        System.out.println(result);
     }
 }
