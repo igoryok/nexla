@@ -4,11 +4,25 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public class OverlapTest {
+
+    /**
+     * List null
+     * Output: []
+     */
+    @Test
+    public void freeSlotsNullTest() {
+
+        Overlap o = new Overlap();
+        List<Event> result = o.freeSlots(null);
+
+        assertEquals(0, result.size());
+    }
 
     /**
      * List empty:
@@ -21,7 +35,7 @@ public class OverlapTest {
         List<Event> result = o.freeSlots(input);
 
         assertEquals(1, result.size());
-        assertEquals(new Event(0.00, 24.00) , result.get(0));
+        assertEquals(new Event(0.00, 24.00), result.get(0));
     }
 
     /**
@@ -46,9 +60,29 @@ public class OverlapTest {
         List<Event> result = o.freeSlots(input);
 
         assertEquals(4, result.size());
-        assertEquals(new Event(0.00, 8.30) , result.get(0));
-        assertEquals(new Event(10.30, 11.00) , result.get(1));
-        assertEquals(new Event(11.30, 13.00) , result.get(2));
-        assertEquals(new Event(14.00, 24.00) , result.get(3));
+        assertEquals(new Event(0.00, 8.30), result.get(0));
+        assertEquals(new Event(10.30, 11.00), result.get(1));
+        assertEquals(new Event(11.30, 13.00), result.get(2));
+        assertEquals(new Event(14.00, 24.00), result.get(3));
+    }
+
+    /**
+     * A : [0-24]
+     * B : [0-24]
+     * Output: []
+     */
+    @Test
+    public void freeSlotsAllBusyTest() {
+        List<List<Event>> input = new ArrayList<>();
+        List<Event> i1 = Collections.singletonList(new Event(0.00, 24.00));
+        List<Event> i2 = Collections.singletonList(new Event(0.00, 24.00));
+
+        input.add(i1);
+        input.add(i2);
+
+        Overlap o = new Overlap();
+        List<Event> result = o.freeSlots(input);
+
+        assertEquals(0, result.size());
     }
 }
